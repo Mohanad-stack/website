@@ -3,368 +3,221 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mohanad Al-Harbi | Electrical Engineer</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>Mohanad Al-Harbi | CV</title>
     <style>
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
-            --bg: #0B0F1A;
-            --surface: #111827;
-            --border: rgba(255,255,255,0.06);
+            --bg: #1a1a2e;
+            --bar: #16213e;
             --accent: #3B82F6;
-            --accent-glow: rgba(59,130,246,0.15);
-            --text: #E2E8F0;
-            --text-muted: #94A3B8;
-            --text-dim: #64748B;
-            --serif: 'DM Serif Display', serif;
-            --sans: 'Manrope', sans-serif;
+            --text: #e2e8f0;
+            --text-muted: #94a3b8;
+            --shadow: rgba(0,0,0,0.4);
         }
 
-        html { scroll-behavior: smooth; }
-
         body {
-            font-family: var(--sans);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             background: var(--bg);
             color: var(--text);
             min-height: 100vh;
-            overflow-x: hidden;
-        }
-
-        /* Ambient background */
-        .ambient {
-            position: fixed;
-            inset: 0;
-            z-index: 0;
-            pointer-events: none;
-            overflow: hidden;
-        }
-        .ambient::before {
-            content: '';
-            position: absolute;
-            width: 600px; height: 600px;
-            top: -200px; right: -100px;
-            background: radial-gradient(circle, rgba(59,130,246,0.08) 0%, transparent 70%);
-            border-radius: 50%;
-            animation: drift 20s ease-in-out infinite;
-        }
-        .ambient::after {
-            content: '';
-            position: absolute;
-            width: 500px; height: 500px;
-            bottom: -150px; left: -100px;
-            background: radial-gradient(circle, rgba(99,102,241,0.06) 0%, transparent 70%);
-            border-radius: 50%;
-            animation: drift 25s ease-in-out infinite reverse;
-        }
-        @keyframes drift {
-            0%, 100% { transform: translate(0, 0); }
-            50% { transform: translate(40px, 30px); }
-        }
-
-        /* Grid pattern overlay */
-        .grid-overlay {
-            position: fixed;
-            inset: 0;
-            z-index: 0;
-            pointer-events: none;
-            background-image:
-                linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
-            background-size: 60px 60px;
-        }
-
-        .container {
-            position: relative;
-            z-index: 1;
-            max-width: 720px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
-
-        /* Header */
-        header {
-            padding: 80px 0 40px;
-            text-align: center;
-        }
-        .tag {
-            display: inline-block;
-            font-size: 11px;
-            font-weight: 600;
-            letter-spacing: 2.5px;
-            text-transform: uppercase;
-            color: var(--accent);
-            background: var(--accent-glow);
-            border: 1px solid rgba(59,130,246,0.2);
-            padding: 6px 16px;
-            border-radius: 100px;
-            margin-bottom: 28px;
-            animation: fadeUp 0.8s ease both;
-        }
-        h1 {
-            font-family: var(--serif);
-            font-size: clamp(2.4rem, 6vw, 3.6rem);
-            font-weight: 400;
-            letter-spacing: -0.5px;
-            line-height: 1.15;
-            color: #fff;
-            margin-bottom: 16px;
-            animation: fadeUp 0.8s 0.15s ease both;
-        }
-        .subtitle {
-            font-size: 1.05rem;
-            font-weight: 300;
-            color: var(--text-muted);
-            line-height: 1.7;
-            max-width: 520px;
-            margin: 0 auto 36px;
-            animation: fadeUp 0.8s 0.3s ease both;
-        }
-
-        /* Contact row */
-        .contact-row {
             display: flex;
-            justify-content: center;
-            gap: 24px;
-            flex-wrap: wrap;
-            animation: fadeUp 0.8s 0.45s ease both;
-        }
-        .contact-row a {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-        .contact-row a:hover { color: var(--accent); }
-        .contact-row svg { width: 16px; height: 16px; flex-shrink: 0; }
-
-        /* Divider */
-        .divider {
-            width: 48px;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--accent), transparent);
-            margin: 48px auto;
-            animation: fadeUp 0.8s 0.6s ease both;
+            flex-direction: column;
         }
 
-        /* Section */
-        .section {
-            margin-bottom: 48px;
-            animation: fadeUp 0.8s 0.7s ease both;
-        }
-        .section-label {
-            font-size: 10px;
-            font-weight: 700;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: var(--text-dim);
-            margin-bottom: 20px;
-        }
-
-        /* Project cards */
-        .project {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 24px 28px;
-            margin-bottom: 12px;
-            transition: border-color 0.3s, transform 0.3s;
-        }
-        .project:hover {
-            border-color: rgba(59,130,246,0.2);
-            transform: translateY(-2px);
-        }
-        .project-title {
-            font-family: var(--serif);
-            font-size: 1.1rem;
-            color: #fff;
-            margin-bottom: 6px;
-        }
-        .project-date {
-            font-size: 0.75rem;
-            color: var(--text-dim);
-            margin-bottom: 10px;
-        }
-        .project-desc {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            line-height: 1.65;
-        }
-
-        /* Skills */
-        .skills-grid {
+        /* Top bar */
+        .topbar {
+            position: sticky;
+            top: 0;
+            z-index: 100;
             display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-        }
-        .skill-tag {
-            font-size: 0.78rem;
-            font-weight: 500;
-            color: var(--text-muted);
-            background: var(--surface);
-            border: 1px solid var(--border);
-            padding: 7px 14px;
-            border-radius: 8px;
-            transition: border-color 0.3s, color 0.3s;
-        }
-        .skill-tag:hover {
-            border-color: rgba(59,130,246,0.25);
-            color: var(--text);
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 24px;
+            background: var(--bar);
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 2px 20px var(--shadow);
         }
 
-        /* Download button */
-        .download-section {
-            text-align: center;
-            padding: 20px 0 80px;
-            animation: fadeUp 0.8s 0.9s ease both;
-        }
-        .btn {
-            display: inline-flex;
+        .topbar-left {
+            display: flex;
             align-items: center;
-            gap: 10px;
-            font-family: var(--sans);
+            gap: 12px;
+        }
+
+        .topbar-name {
             font-size: 0.95rem;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .topbar-sep {
+            width: 1px;
+            height: 18px;
+            background: rgba(255,255,255,0.15);
+        }
+
+        .page-info {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .btn-download {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: inherit;
+            font-size: 0.82rem;
             font-weight: 600;
             color: #fff;
             background: var(--accent);
             border: none;
-            padding: 16px 36px;
-            border-radius: 12px;
+            padding: 9px 20px;
+            border-radius: 8px;
             text-decoration: none;
             cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.3s;
-            box-shadow: 0 0 0 rgba(59,130,246,0);
+            transition: transform 0.15s, box-shadow 0.25s;
         }
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 30px rgba(59,130,246,0.3);
+        .btn-download:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 16px rgba(59,130,246,0.35);
         }
-        .btn:active { transform: translateY(0); }
-        .btn svg { width: 18px; height: 18px; }
+        .btn-download svg { width: 15px; height: 15px; }
 
-        /* Footer */
-        footer {
+        /* PDF container */
+        .pdf-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 32px 16px 60px;
+            gap: 24px;
+            overflow-y: auto;
+        }
+
+        .pdf-container canvas {
+            max-width: 100%;
+            height: auto !important;
+            border-radius: 4px;
+            box-shadow: 0 4px 30px var(--shadow), 0 0 0 1px rgba(255,255,255,0.04);
+        }
+
+        /* Loading */
+        .loader {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+            padding: 80px 0;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+        .spinner {
+            width: 32px; height: 32px;
+            border: 3px solid rgba(255,255,255,0.08);
+            border-top-color: var(--accent);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* Error */
+        .error-msg {
             text-align: center;
-            padding: 24px 0 40px;
-            font-size: 0.75rem;
-            color: var(--text-dim);
-            border-top: 1px solid var(--border);
+            padding: 80px 24px;
+            color: var(--text-muted);
         }
-
-        @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        .error-msg h2 {
+            font-size: 1.1rem;
+            color: #fff;
+            margin-bottom: 8px;
         }
+        .error-msg p { font-size: 0.85rem; line-height: 1.6; }
 
         @media (max-width: 600px) {
-            header { padding: 60px 0 32px; }
-            .contact-row { gap: 16px; }
-            .project { padding: 20px; }
+            .topbar { padding: 10px 16px; }
+            .topbar-name { font-size: 0.85rem; }
+            .btn-download { padding: 8px 14px; font-size: 0.78rem; }
+            .btn-download span { display: none; }
+            .pdf-container { padding: 20px 8px 40px; gap: 16px; }
         }
     </style>
 </head>
 <body>
 
-<div class="ambient"></div>
-<div class="grid-overlay"></div>
-
-<div class="container">
-    <header>
-        <div class="tag">Electrical Engineering</div>
-        <h1>Mohanad Al-Harbi</h1>
-        <p class="subtitle">
-            4th-year Electrical Engineering student focused on Power Systems &amp; Power Electronics.
-            Experienced in HVDC modeling, converter control design, and power flow analysis.
-        </p>
-        <div class="contact-row">
-            <a href="mailto:MohanadHarbi95@gmail.com">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-                MohanadHarbi95@gmail.com
-            </a>
-            <a href="tel:+966555600884">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                +966 555 600 884
-            </a>
-        </div>
-    </header>
-
-    <div class="divider"></div>
-
-    <!-- Projects -->
-    <div class="section">
-        <div class="section-label">Projects</div>
-
-        <div class="project">
-            <div class="project-title">GSSAM for DC-DC Converters</div>
-            <div class="project-date">April 2026</div>
-            <p class="project-desc">
-                Developed 8-state closed-loop Generalized State-Space Averaging Models for Buck, Boost, and Buck-Boost topologies. Designed cascaded dual PI controllers and validated results using ode45 and Simulink.
-            </p>
-        </div>
-
-        <div class="project">
-            <div class="project-title">VSC-HVDC Transmission System</div>
-            <div class="project-date">March 2026</div>
-            <p class="project-desc">
-                Designed a two-terminal VSC-HVDC system in Simulink with PLL-based grid synchronization, dq-frame vector control, and cascaded outer/inner loop PID controllers.
-            </p>
-        </div>
-
-        <div class="project">
-            <div class="project-title">OPF Analysis — IEEE 14-Bus System</div>
-            <div class="project-date">November 2025</div>
-            <p class="project-desc">
-                Performed Newton-Raphson power flow and Optimal Power Flow in PSS/E to minimize active power losses. Analyzed voltage profiles, line flows, and PV-to-PQ bus switching.
-            </p>
-        </div>
+<div class="topbar">
+    <div class="topbar-left">
+        <span class="topbar-name">Mohanad Al-Harbi</span>
+        <div class="topbar-sep"></div>
+        <span class="page-info" id="pageInfo">Loading...</span>
     </div>
-
-    <!-- Skills -->
-    <div class="section">
-        <div class="section-label">Technical Skills</div>
-        <div class="skills-grid">
-            <span class="skill-tag">MATLAB</span>
-            <span class="skill-tag">Simulink</span>
-            <span class="skill-tag">Simscape Electrical</span>
-            <span class="skill-tag">PSS/E</span>
-            <span class="skill-tag">Power Flow Analysis</span>
-            <span class="skill-tag">Optimal Power Flow</span>
-            <span class="skill-tag">VSC-HVDC</span>
-            <span class="skill-tag">PID Control Design</span>
-            <span class="skill-tag">dq-Frame Vector Control</span>
-            <span class="skill-tag">State-Space Modeling</span>
-            <span class="skill-tag">Fourier Analysis</span>
-        </div>
-    </div>
-
-    <!-- Education -->
-    <div class="section">
-        <div class="section-label">Education</div>
-        <div class="project">
-            <div class="project-title">B.Sc. Electrical Engineering</div>
-            <div class="project-date">Umm Al-Qura University · Makkah · Expected 2027</div>
-            <p class="project-desc">
-                Major in Power Systems · GPA: 3.32 / 4.0
-            </p>
-        </div>
-    </div>
-
-    <!-- Download -->
-    <div class="download-section">
-        <a class="btn" href="CV.pdf" download>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-            Download CV
-        </a>
-    </div>
-
-    <footer>
-        &copy; 2026 Mohanad Al-Harbi
-    </footer>
+    <a class="btn-download" href="CV.pdf" download="Mohanad_AlHarbi_CV.pdf">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="7 10 12 15 17 10"/>
+            <line x1="12" y1="15" x2="12" y2="3"/>
+        </svg>
+        <span>Download CV</span>
+    </a>
 </div>
+
+<div class="pdf-container" id="pdfContainer">
+    <div class="loader" id="loader">
+        <div class="spinner"></div>
+        Loading CV...
+    </div>
+</div>
+
+<script type="module">
+    const { getDocument, GlobalWorkerOptions } = await import('https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.4.168/pdf.min.mjs');
+
+    GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.4.168/pdf.worker.min.mjs';
+
+    const container = document.getElementById('pdfContainer');
+    const loader = document.getElementById('loader');
+    const pageInfo = document.getElementById('pageInfo');
+
+    try {
+        const pdf = await getDocument('CV.pdf').promise;
+        const totalPages = pdf.numPages;
+
+        loader.remove();
+        pageInfo.textContent = totalPages === 1 ? '1 page' : totalPages + ' pages';
+
+        for (let i = 1; i <= totalPages; i++) {
+            const page = await pdf.getPage(i);
+
+            const desiredWidth = Math.min(900, window.innerWidth - 40);
+            const unscaledViewport = page.getViewport({ scale: 1 });
+            const scale = desiredWidth / unscaledViewport.width;
+            const pixelRatio = Math.min(window.devicePixelRatio || 1, 2);
+            const viewport = page.getViewport({ scale: scale * pixelRatio });
+
+            const canvas = document.createElement('canvas');
+            canvas.width = viewport.width;
+            canvas.height = viewport.height;
+            canvas.style.width = (viewport.width / pixelRatio) + 'px';
+            canvas.style.height = (viewport.height / pixelRatio) + 'px';
+
+            container.appendChild(canvas);
+
+            await page.render({
+                canvasContext: canvas.getContext('2d'),
+                viewport: viewport
+            }).promise;
+        }
+    } catch (err) {
+        loader.remove();
+        pageInfo.textContent = 'Error';
+        container.innerHTML =
+            '<div class="error-msg">' +
+            '<h2>Could not load CV</h2>' +
+            '<p>Make sure <strong>CV.pdf</strong> is in the same folder as this page.<br>' +
+            'You can still download it using the button above.</p>' +
+            '</div>';
+    }
+</script>
 
 </body>
 </html>
